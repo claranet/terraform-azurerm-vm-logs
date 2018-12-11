@@ -1,0 +1,1 @@
+# Azure VM - Enable diagnostics logs 
