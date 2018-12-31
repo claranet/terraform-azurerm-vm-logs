@@ -13,7 +13,7 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
   virtual_machine_name = "${var.vm_name}"
   publisher            = "Microsoft.OSTCExtensions"
   type                 = "LinuxDiagnostic"
-  type_handler_version = "2.3"
+  type_handler_version = "${var.diagnostics_linux_extension_version}"
 
   auto_upgrade_minor_version = true
 

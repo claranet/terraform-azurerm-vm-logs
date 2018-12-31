@@ -12,11 +12,11 @@ variable "stack" {
 }
 
 variable "resource_group_name" {
-  description = "The name of the resource group in which to create the PostgreSQL Server. Changing this forces a new resource to be created."
+  description = "The name of the resource group in which the VM has been created."
 }
 
 variable "azure_region" {
-  description = "Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created."
+  description = "Specifies the supported Azure location where the resource exists."
 }
 
 variable "azure_short_region" {
@@ -45,4 +45,9 @@ variable "diagnotics_storage_account" {
 
 variable "diagnotics_storage_key" {
   description = "Azure Storage Account access key"
+}
+
+variable "diagnostics_linux_extension_version" {
+  description = "Linux VM diagnostics extension version"
+  default     = "2.3"
 }
