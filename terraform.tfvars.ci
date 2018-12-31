@@ -1,0 +1,13 @@
+azure_region="fr-central"
+azure_short_region="frc"
+client_name="test"
+environment="test"
+stack="ci"
+
+resource_group_name="rg-test"
+
+vm_name="vm-test-euwest"
+vm_id="/subscriptions/vm-test-euwest"
+
+diagnotics_storage_account="strtest"
+diagnotics_storage_key="1234"
