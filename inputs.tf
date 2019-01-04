@@ -15,11 +15,11 @@ variable "resource_group_name" {
   description = "The name of the resource group in which the VM has been created."
 }
 
-variable "azure_region" {
+variable "location" {
   description = "Specifies the supported Azure location where the resource exists."
 }
 
-variable "azure_short_region" {
+variable "location_short" {
   description = "Short version of the Azure location, used by naming convention."
 }
 
@@ -39,11 +39,11 @@ variable "vm_id" {
 }
 
 // ========= Storage logs variables
-variable "diagnotics_storage_account" {
+variable "diagnotics_storage_account_name" {
   description = "Azure Storage Account to use for logs and diagnotics"
 }
 
-variable "diagnotics_storage_key" {
+variable "diagnotics_storage_account_key" {
   description = "Azure Storage Account access key"
 }
 

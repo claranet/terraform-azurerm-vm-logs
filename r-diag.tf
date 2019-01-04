@@ -6,9 +6,17 @@ data "template_file" "diag_xml_config" {
   }
 }
 
+locals {
+  default_tags = {
+    env = "${var.environment}"
+    stack = "${var.stack}"
+  }
+}
+
+
 resource "azurerm_virtual_machine_extension" "diagnostics" {
   name                 = "vm-${var.vm_id}-linux-diagnostics"
-  location             = "${var.azure_region}"
+  location             = "${var.location}"
   resource_group_name  = "${var.resource_group_name}"
   virtual_machine_name = "${var.vm_name}"
   publisher            = "Microsoft.OSTCExtensions"
@@ -20,16 +28,16 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
   settings = <<SETTINGS
     {
         "xmlCfg": "${base64encode(data.template_file.diag_xml_config.rendered)}",
-        "StorageAccount": "${var.diagnotics_storage_account}"
+        "StorageAccount": "${var.diagnotics_storage_account_name}"
     }
 SETTINGS
 
   protected_settings = <<SETTINGS
     {
-        "storageAccountName": "${var.diagnotics_storage_account}",
-        "storageAccountKey": "${var.diagnotics_storage_key}"
+        "storageAccountName": "${var.diagnotics_storage_account_name}",
+        "storageAccountKey": "${var.diagnotics_storage_account_key}"
     }
 SETTINGS
 
-  tags = "${var.tags}"
+  tags = "${merge(local.default_tags, var.tags)}"
 }
