@@ -10,4 +10,4 @@ vm_name="vm-test-euwest"
 vm_id="/subscriptions/vm-test-euwest"
 
 diagnostics_storage_account_name="strtest"
-diagnostics_storage_account_key="1234"
+diagnostics_storage_account_sas_token="1234"

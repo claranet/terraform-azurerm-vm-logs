@@ -1,8 +1,9 @@
-data "template_file" "diag_xml_config" {
-  template = "${file("${path.module}/diag_config.xml")}"
+data "template_file" "diag_json_config" {
+  template = "${file("${path.module}/diag_config_3.0.json")}"
 
   vars {
-    vm_id = "${var.vm_id}"
+    vm_id           = "${var.vm_id}"
+    storage_account = "${var.diagnostics_storage_account_name}"
   }
 }
 
@@ -14,27 +15,22 @@ locals {
 }
 
 resource "azurerm_virtual_machine_extension" "diagnostics" {
-  name                 = "vm-${var.vm_id}-linux-diagnostics"
+  name                 = "${coalesce(var.vm_extension_custom_name, "vm-${var.vm_id}-linux-diagnostics")}"
   location             = "${var.location}"
   resource_group_name  = "${var.resource_group_name}"
   virtual_machine_name = "${var.vm_name}"
-  publisher            = "Microsoft.OSTCExtensions"
+  publisher            = "Microsoft.Azure.Diagnostics"
   type                 = "LinuxDiagnostic"
   type_handler_version = "${var.diagnostics_linux_extension_version}"
 
   auto_upgrade_minor_version = true
 
-  settings = <<SETTINGS
-    {
-        "xmlCfg": "${base64encode(data.template_file.diag_xml_config.rendered)}",
-        "StorageAccount": "${var.diagnostics_storage_account_name}"
-    }
-SETTINGS
+  settings = "${data.template_file.diag_json_config.rendered}"
 
   protected_settings = <<SETTINGS
     {
         "storageAccountName": "${var.diagnostics_storage_account_name}",
-        "storageAccountKey": "${var.diagnostics_storage_account_key}"
+        "storageAccountSasToken": "${var.diagnostics_storage_account_sas_token}"
     }
 SETTINGS
 
