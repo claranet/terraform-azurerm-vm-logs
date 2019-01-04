@@ -27,14 +27,14 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
   settings = <<SETTINGS
     {
         "xmlCfg": "${base64encode(data.template_file.diag_xml_config.rendered)}",
-        "StorageAccount": "${var.diagnotics_storage_account_name}"
+        "StorageAccount": "${var.diagnostics_storage_account_name}"
     }
 SETTINGS
 
   protected_settings = <<SETTINGS
     {
-        "storageAccountName": "${var.diagnotics_storage_account_name}",
-        "storageAccountKey": "${var.diagnotics_storage_account_key}"
+        "storageAccountName": "${var.diagnostics_storage_account_name}",
+        "storageAccountKey": "${var.diagnostics_storage_account_key}"
     }
 SETTINGS
 

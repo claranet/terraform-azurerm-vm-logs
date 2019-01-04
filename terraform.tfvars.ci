@@ -9,5 +9,5 @@ resource_group_name="rg-test"
 vm_name="vm-test-euwest"
 vm_id="/subscriptions/vm-test-euwest"
 
-diagnotics_storage_account_name="strtest"
-diagnotics_storage_account_key="1234"
+diagnostics_storage_account_name="strtest"
+diagnostics_storage_account_key="1234"

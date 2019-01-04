@@ -9,8 +9,8 @@ It allows you to push logs on an Azure Storage Account and to enable Logs Analyt
 |------|-------------|:----:|:-----:|:-----:|
 | client_name | Client name/account used in naming | string | - | yes |
 | diagnostics_linux_extension_version | Linux VM diagnostics extension version | string | `2.3` | no |
-| diagnotics_storage_account_key | Azure Storage Account access key | string | - | yes |
-| diagnotics_storage_account_name | Azure Storage Account to use for logs and diagnotics | string | - | yes |
+| diagnostics_storage_account_key | Azure Storage Account access key | string | - | yes |
+| diagnostics_storage_account_name | Azure Storage Account to use for logs and diagnostics | string | - | yes |
 | environment | Project environment | string | - | yes |
 | location | Specifies the supported Azure location where the resource exists. | string | - | yes |
 | location_short | Short version of the Azure location, used by naming convention. | string | - | yes |

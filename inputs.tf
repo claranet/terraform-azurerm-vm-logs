@@ -39,11 +39,11 @@ variable "vm_id" {
 }
 
 // ========= Storage logs variables
-variable "diagnotics_storage_account_name" {
-  description = "Azure Storage Account to use for logs and diagnotics"
+variable "diagnostics_storage_account_name" {
+  description = "Azure Storage Account to use for logs and diagnostics"
 }
 
-variable "diagnotics_storage_account_key" {
+variable "diagnostics_storage_account_key" {
   description = "Azure Storage Account access key"
 }
 
