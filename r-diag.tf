@@ -8,11 +8,10 @@ data "template_file" "diag_xml_config" {
 
 locals {
   default_tags = {
-    env = "${var.environment}"
+    env   = "${var.environment}"
     stack = "${var.stack}"
   }
 }
-
 
 resource "azurerm_virtual_machine_extension" "diagnostics" {
   name                 = "vm-${var.vm_id}-linux-diagnostics"
