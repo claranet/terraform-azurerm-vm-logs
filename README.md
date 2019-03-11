@@ -3,6 +3,59 @@
 This feature enables Diagnostics VM extension for Linux VM.
 It allows you to push logs on an Azure Storage Account and to enable Logs Analytics dashboards.
 
+## Usage
+
+```shell
+module "az-region" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/cloud/azure/terraform/modules/regions.git?ref=vX.X.X"
+
+  azure_region = "${var.azure_region}"
+}
+
+module "rg" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/cloud/azure/terraform/modules/rg.git?ref=vX.X.X"
+
+  location    = "${module.az-region.location}"
+  client_name = "${var.client_name}"
+  environment = "${var.environment}"
+  stack       = "${var.stack}"
+}
+
+module "log-analytics" {
+  source = "..."
+
+  [..]
+}
+
+module "vm-001" {
+  source = "..."
+
+  [..]
+}
+
+module "vm-001-logs" {
+  source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/cloud/azure/terraform/modules/vm-logs.git?ref=vX.X.X"
+
+  location       = "${module.az-region.location}"
+  location_short = "${module.az-region.location_short}"
+  client_name    = "${var.client_name}"
+  environment    = "${var.environment}"
+  stack          = "${var.stack}"
+
+  resource_group_name = "${module.rg.resource_group_name}"
+
+  diagnostics_storage_account_name      = "${module.log-analytics.storage_account_name}"
+  diagnostics_storage_account_sas_token = "${module.log-analytics.storage_account_sas_token}"
+
+  vm_id   = "${module.vm-001.vm_id}"
+  vm_name = "${module.vm-001.vm_name"
+
+  tags = {
+    environment = "${var.environment}"
+    stack       = "${var.stack}"
+  }
+```
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
