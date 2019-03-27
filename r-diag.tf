@@ -15,7 +15,7 @@ locals {
 }
 
 resource "azurerm_virtual_machine_extension" "diagnostics" {
-  name                 = "${coalesce(var.vm_extension_custom_name, "vm-${var.vm_id}-linux-diagnostics")}"
+  name                 = "${coalesce(var.vm_extension_custom_name, "${var.vm_name}-linux-diagnostics")}"
   location             = "${var.location}"
   resource_group_name  = "${var.resource_group_name}"
   virtual_machine_name = "${var.vm_name}"
