@@ -1,4 +1,4 @@
-# Unreleased
+# 0.2.0 (01/04/2019)
 
 UPDATES:
 
