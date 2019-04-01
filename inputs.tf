@@ -29,6 +29,11 @@ variable "tags" {
   default     = {}
 }
 
+variable "vm_extension_custom_name" {
+  description = "Extension name, auto-generated if empty."
+  default     = ""
+}
+
 // ========= VM variables
 variable "vm_name" {
   description = "Azure Linux VM name to enable Diagnostics"
@@ -43,11 +48,11 @@ variable "diagnostics_storage_account_name" {
   description = "Azure Storage Account to use for logs and diagnostics"
 }
 
-variable "diagnostics_storage_account_key" {
-  description = "Azure Storage Account access key"
+variable "diagnostics_storage_account_sas_token" {
+  description = "Azure Storage Account SAS Token. An Account SAS token for Blob and Table services (ss='bt'), applicable to containers and objects (srt='co'), which grants add, create, list, update, and write permissions (sp='acluw'). Do not include the leading question-mark (?)."
 }
 
 variable "diagnostics_linux_extension_version" {
   description = "Linux VM diagnostics extension version"
-  default     = "2.3"
+  default     = "3.0"
 }

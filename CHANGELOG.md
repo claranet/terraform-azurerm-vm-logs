@@ -1,3 +1,9 @@
+# Unreleased
+
+UPDATES:
+
+  * AZ-21: Azure VM Linux - Diagnostics extension v3.0
+
 # 0.1.0 (11/03/2019)
 
 NOTES:
