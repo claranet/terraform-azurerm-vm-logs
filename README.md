@@ -69,6 +69,7 @@ module "vm-001-logs" {
 | location_short | Short version of the Azure location, used by naming convention. | string | - | yes |
 | resource_group_name | The name of the resource group in which the VM has been created. | string | - | yes |
 | stack | Project stack name | string | - | yes |
+| syslog\_log\_level\_config | Syslog Event Configuration log level [Can be LOG_DEBUG, LOG_INFO, LOG_NOTICE, LOG_ERR, LOG_CRIT, LOG_ALERT, LOG_EMERG] | string | `"LOG_ERR"` | no |
 | tags | Tags to assign on ressources | map | `<map>` | no |
 | vm_extension_custom_name | Extension name, auto-generated if empty. | string | `` | no |
 | vm_id | Azure Linux VM ID to enable Diagnostics | string | - | yes |

@@ -2,8 +2,9 @@ data "template_file" "diag_json_config" {
   template = "${file("${path.module}/diag_config_3.0.json")}"
 
   vars {
-    vm_id           = "${var.vm_id}"
-    storage_account = "${var.diagnostics_storage_account_name}"
+    vm_id            = "${var.vm_id}"
+    storage_account  = "${var.diagnostics_storage_account_name}"
+    log_level_config = "${var.syslog_log_level_config}"
   }
 }
 
