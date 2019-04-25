@@ -1,3 +1,9 @@
+# 0.3.0 (25/04/2019)
+
+UPDATES:
+
+  * AZ-82: Add variable to customize log level 
+
 # 0.2.0 (01/04/2019)
 
 UPDATES:
