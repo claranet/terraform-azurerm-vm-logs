@@ -1,17 +1,23 @@
-# 0.3.0 (25/04/2019)
+# v0.3.1 - 2019-07-01
 
-UPDATES:
+Changed
 
-  * AZ-82: Add variable to customize log level 
+  * AZ-82: Update README
 
-# 0.2.0 (01/04/2019)
+# v0.3.0 - 2019-04-25
 
-UPDATES:
+Changed
+
+  * AZ-82: Add variable to customize log level
+
+# v0.2.0 - 2019-04-01
+
+Changed
 
   * AZ-21: Azure VM Linux - Diagnostics extension v3.0
 
-# 0.1.0 (11/03/2019)
+# v0.1.0 - 2019-03-11
 
-NOTES:
+Added
 
   * AZ-4/21: First Release. Azure VM Linux - Diagnostics extension v2.3
