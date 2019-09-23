@@ -1,4 +1,5 @@
 # Azure VM Linux - Enable diagnostics logs
+[![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-orange.svg)](LICENSE)
 
 This feature enables Diagnostics VM extension for Linux VM.
 It allows you to push logs on an Azure Storage Account and to enable Logs Analytics dashboards.
