@@ -7,6 +7,7 @@ Breaking
 Added
 
   * AZ-118: Add LICENSE, NOTICE & Github badges
+  * AZ-119: Add CONTRIBUTING.md doc and `terraform-wrapper` usage with the module
 
 Changed
 
