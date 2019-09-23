@@ -8,6 +8,10 @@ Added
 
   * AZ-118: Add LICENSE, NOTICE & Github badges
 
+Changed
+
+  * AZ-119: Revamp README and publish this module to Terraform registry
+
 # v0.3.1 - 2019-07-01
 
 Changed
