@@ -3,22 +3,33 @@
 This feature enables Diagnostics VM extension for Linux VM.
 It allows you to push logs on an Azure Storage Account and to enable Logs Analytics dashboards.
 
+## Requirements
+
+* [AzureRM Terraform provider](https://www.terraform.io/docs/providers/azurerm/) >= 1.32
+
+## Terraform version compatibility
+
+| Module version | Terraform version |
+|----------------|-------------------|
+| >= 2.x.x       | 0.12.x            |
+| < 2.x.x        | 0.11.x            |
+
 ## Usage
 
 ```shell
 module "az-region" {
   source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/cloud/azure/terraform/modules/regions.git?ref=vX.X.X"
 
-  azure_region = "${var.azure_region}"
+  azure_region = var.azure_region
 }
 
 module "rg" {
   source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/cloud/azure/terraform/modules/rg.git?ref=vX.X.X"
 
-  location    = "${module.az-region.location}"
-  client_name = "${var.client_name}"
-  environment = "${var.environment}"
-  stack       = "${var.stack}"
+  location    = module.az-region.location
+  client_name = var.client_name
+  environment = var.environment
+  stack       = var.stack
 }
 
 module "log-analytics" {
@@ -36,23 +47,23 @@ module "vm-001" {
 module "vm-001-logs" {
   source = "git::ssh://git@git.fr.clara.net/claranet/cloudnative/projects/cloud/azure/terraform/modules/vm-logs.git?ref=vX.X.X"
 
-  location       = "${module.az-region.location}"
-  location_short = "${module.az-region.location_short}"
-  client_name    = "${var.client_name}"
-  environment    = "${var.environment}"
-  stack          = "${var.stack}"
+  location       = module.az-region.location
+  location_short = module.az-region.location_short
+  client_name    = var.client_name
+  environment    = var.environment
+  stack          = var.stack
 
-  resource_group_name = "${module.rg.resource_group_name}"
+  resource_group_name = module.rg.resource_group_name
 
-  diagnostics_storage_account_name      = "${module.log-analytics.storage_account_name}"
-  diagnostics_storage_account_sas_token = "${module.log-analytics.storage_account_sas_token}"
+  diagnostics_storage_account_name      = module.log-analytics.storage_account_name
+  diagnostics_storage_account_sas_token = module.log-analytics.storage_account_sas_token
 
-  vm_id   = "${module.vm-001.vm_id}"
-  vm_name = "${module.vm-001.vm_name}"
+  vm_id   = module.vm-001.vm_id
+  vm_name = module.vm-001.vm_name
 
   tags = {
-    environment = "${var.environment}"
-    stack       = "${var.stack}"
+    environment = var.environment
+    stack       = var.stack
   }
 }
 ```
@@ -78,4 +89,4 @@ module "vm-001-logs" {
 
 ## Related documentation
 
-(Use Linux Diagnostic Extension to monitor metrics and logs)[https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/diagnostics-linux]
+(Use Linux Diagnostic Extension to monitor metrics and logs)[https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/diagnostics-linux].
