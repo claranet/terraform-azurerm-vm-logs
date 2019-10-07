@@ -97,4 +97,6 @@ module "vm-001-logs" {
 
 ## Related documentation
 
-(Use Linux Diagnostic Extension to monitor metrics and logs)[https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/diagnostics-linux].
+Microsoft Azure documentation: [Use Linux Diagnostic Extension to monitor metrics and logs](https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/diagnostics-linux).
+
+Terraform resource documentation: [terraform.io/docs/providers/azurerm/r/virtual_machine_extension.html](https://www.terraform.io/docs/providers/azurerm/r/virtual_machine_extension.html).
