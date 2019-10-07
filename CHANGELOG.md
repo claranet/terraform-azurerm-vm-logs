@@ -1,3 +1,9 @@
+# v2.0.1 - 2019-10-07
+
+Changed
+
+  * AZ-119: Documentation improvements
+
 # v2.0.0 - 2019-09-30
 
 Breaking
