@@ -1,8 +1,8 @@
 data "template_file" "diag_json_config" {
   template = file("${path.module}/diag_config_3.0.json")
-
+  count    = length(var.vm_ids)
   vars = {
-    vm_id            = var.vm_id
+    vm_id            = element(var.vm_ids, count.index)
     storage_account  = var.diagnostics_storage_account_name
     log_level_config = var.syslog_log_level_config
   }
@@ -17,19 +17,20 @@ locals {
 
 resource "azurerm_virtual_machine_extension" "diagnostics" {
   name = coalesce(
-    var.vm_extension_custom_name,
-    "${var.vm_name}-linux-diagnostics",
+    element(var.vm_extension_custom_name, count.index),
+    "${element(split("/", element(var.vm_ids, count.index)), 8)}-linux-diagnostics",
   )
+  count                = length(var.vm_ids)
   location             = var.location
-  resource_group_name  = var.resource_group_name
-  virtual_machine_name = var.vm_name
+  resource_group_name  = element(split("/", element(var.vm_ids, count.index)), 4)
+  virtual_machine_name = element(split("/", element(var.vm_ids, count.index)), 8)
   publisher            = "Microsoft.Azure.Diagnostics"
   type                 = "LinuxDiagnostic"
   type_handler_version = var.diagnostics_linux_extension_version
 
   auto_upgrade_minor_version = true
 
-  settings = data.template_file.diag_json_config.rendered
+  settings = data.template_file.diag_json_config[count.index].rendered
 
   protected_settings = <<SETTINGS
     {
@@ -38,7 +39,5 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
     }
 SETTINGS
 
-
   tags = merge(local.default_tags, var.tags)
 }
-
