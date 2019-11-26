@@ -65,6 +65,7 @@ module "vm-001-logs" {
   diagnostics_storage_account_sas_token = module.log-analytics.storage_account_sas_token
 
   vm_ids   = ["module.vm-001.vm_id"]
+  vm_count = "1"
 
   tags = {
     environment = var.environment
@@ -88,6 +89,7 @@ module "vm-001-logs" {
 | tags | Tags to assign on ressources | map | `<map>` | no |
 | vm\_extension\_custom\_name | Extension name, auto-generated if empty. | string | `""` | no |
 | vm\_ids | List of Azure Linux VM ID to enable Diagnostics | string | n/a | yes |
+| vm\_count | Number of Azure Linux VM ID to enable Diagnostics | number | n/a | yes |
 
 ## Related documentation
 

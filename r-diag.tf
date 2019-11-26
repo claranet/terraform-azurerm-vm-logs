@@ -20,7 +20,7 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
     element(var.vm_extension_custom_name, count.index),
     "${element(split("/", element(var.vm_ids, count.index)), 8)}-linux-diagnostics",
   )
-  count                = length(var.vm_ids)
+  count                = var.vm_count
   location             = var.location
   resource_group_name  = element(split("/", element(var.vm_ids, count.index)), 4)
   virtual_machine_name = element(split("/", element(var.vm_ids, count.index)), 8)

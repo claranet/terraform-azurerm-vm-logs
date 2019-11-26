@@ -1,3 +1,9 @@
+# v2.0.2 - 2019-10-26
+
+Changed
+
+  * AZ-147: Manage list for vm ids
+
 # v2.0.1 - 2019-10-07
 
 Changed

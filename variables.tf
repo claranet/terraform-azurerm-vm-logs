@@ -34,6 +34,11 @@ variable "vm_ids" {
   type        = list(string)
 }
 
+variable "vm_count" {
+  description = "Number of Azure Linux VM ID to enable Diagnostics"
+  type        = number
+}
+
 // ========= Storage logs variables
 variable "diagnostics_storage_account_name" {
   description = "Azure Storage Account to use for logs and diagnostics"
