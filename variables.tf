@@ -23,8 +23,7 @@ variable "tags" {
 
 variable "vm_extension_custom_name" {
   description = "Extension name, auto-generated if empty."
-  type        = list(string)
-  default     = [""]
+  default     = ""
 }
 
 // ========= VM variables
