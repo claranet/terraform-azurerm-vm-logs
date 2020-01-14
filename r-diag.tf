@@ -1,6 +1,8 @@
 data "template_file" "diag_json_config" {
+  count = var.vm_count
+
   template = file("${path.module}/diag_config_3.0.json")
-  count    = var.vm_count
+
   vars = {
     vm_id            = element(var.vm_ids, count.index)
     storage_account  = var.diagnostics_storage_account_name
@@ -8,19 +10,14 @@ data "template_file" "diag_json_config" {
   }
 }
 
-locals {
-  default_tags = {
-    env   = var.environment
-    stack = var.stack
-  }
-}
-
 resource "azurerm_virtual_machine_extension" "diagnostics" {
+  count = var.vm_count
+
   name = coalesce(
-    var.vm_extension_custom_name,
-    "${element(split("/", element(var.vm_ids, count.index)), 8)}-${count.index}-linux-diagnostics",
+    var.vm_count == 1 ? var.vm_extension_custom_name : format("%s%s", var.vm_extension_custom_name, count.index),
+    format("%s-%s-linux-diagnostics", element(split("/", element(var.vm_ids, count.index)), 8), count.index)
   )
-  count                = var.vm_count
+
   location             = var.location
   resource_group_name  = element(split("/", element(var.vm_ids, count.index)), 4)
   virtual_machine_name = element(split("/", element(var.vm_ids, count.index)), 8)
