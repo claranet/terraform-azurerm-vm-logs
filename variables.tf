@@ -21,9 +21,9 @@ variable "tags" {
   default     = {}
 }
 
-variable "vm_extension_custom_name" {
-  description = "Extension name, auto-generated if empty."
-  default     = ""
+variable "vm_extension_name_suffix" {
+  description = "Extension suffix name."
+  default     = "linux-diagnostics"
 }
 
 // ========= VM variables
@@ -31,11 +31,6 @@ variable "vm_extension_custom_name" {
 variable "vm_ids" {
   description = "List of Azure Linux VM ID to enable Diagnostics"
   type        = list(string)
-}
-
-variable "vm_count" {
-  description = "Number of Azure Linux VM ID to enable Diagnostics"
-  type        = number
 }
 
 // ========= Storage logs variables
