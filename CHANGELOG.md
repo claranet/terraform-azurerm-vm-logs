@@ -1,3 +1,9 @@
+# v2.1.0 - Unreleased
+
+Breaking
+
+  * AZ-147: Manage list for VM IDs (input variable type changed)
+
 # v2.0.1 - 2019-10-07
 
 Changed

@@ -11,16 +11,8 @@ variable "stack" {
   description = "Project stack name"
 }
 
-variable "resource_group_name" {
-  description = "The name of the resource group in which the VM has been created."
-}
-
 variable "location" {
   description = "Specifies the supported Azure location where the resource exists."
-}
-
-variable "location_short" {
-  description = "Short version of the Azure location, used by naming convention."
 }
 
 variable "tags" {
@@ -35,12 +27,15 @@ variable "vm_extension_custom_name" {
 }
 
 // ========= VM variables
-variable "vm_name" {
-  description = "Azure Linux VM name to enable Diagnostics"
+
+variable "vm_ids" {
+  description = "List of Azure Linux VM ID to enable Diagnostics"
+  type        = list(string)
 }
 
-variable "vm_id" {
-  description = "Azure Linux VM ID to enable Diagnostics"
+variable "vm_count" {
+  description = "Number of Azure Linux VM ID to enable Diagnostics"
+  type        = number
 }
 
 // ========= Storage logs variables
