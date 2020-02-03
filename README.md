@@ -39,7 +39,7 @@ module "rg" {
   stack       = var.stack
 }
 
-module "log-analytics" {
+module "run-common" {
   source = "..."
 
   [..]
@@ -61,10 +61,10 @@ module "vm-001-logs" {
   stack          = var.stack
 
 
-  diagnostics_storage_account_name      = module.log-analytics.storage_account_name
-  diagnostics_storage_account_sas_token = module.log-analytics.storage_account_sas_token
+  diagnostics_storage_account_name      = module.run-common.logs_storage_account_name
+  diagnostics_storage_account_sas_token = module.run-common.logs_storage_account_sas_token["sastoken"]
 
-  vm_ids   = ["module.vm-001.vm_id"]
+  vm_ids   = [module.vm-001.vm_id]
 
   tags = {
     environment = var.environment
