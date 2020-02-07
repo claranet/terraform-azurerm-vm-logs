@@ -3,6 +3,7 @@
 Breaking
 
   * AZ-147: Manage list for VM IDs (input variable type changed)
+  * AZ-147: From `count` to `for_each` with input variable changes
 
 # v2.0.1 - 2019-10-07
 

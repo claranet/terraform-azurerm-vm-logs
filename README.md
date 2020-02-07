@@ -39,7 +39,7 @@ module "rg" {
   stack       = var.stack
 }
 
-module "log-analytics" {
+module "run-common" {
   source = "..."
 
   [..]
@@ -61,11 +61,10 @@ module "vm-001-logs" {
   stack          = var.stack
 
 
-  diagnostics_storage_account_name      = module.log-analytics.storage_account_name
-  diagnostics_storage_account_sas_token = module.log-analytics.storage_account_sas_token
+  diagnostics_storage_account_name      = module.run-common.logs_storage_account_name
+  diagnostics_storage_account_sas_token = module.run-common.logs_storage_account_sas_token["sastoken"]
 
-  vm_ids   = ["module.vm-001.vm_id"]
-  vm_count = "1"
+  vm_ids   = [module.vm-001.vm_id]
 
   tags = {
     environment = var.environment
@@ -86,10 +85,9 @@ module "vm-001-logs" {
 | location | Specifies the supported Azure location where the resource exists. | string | n/a | yes |
 | stack | Project stack name | string | n/a | yes |
 | syslog\_log\_level\_config | Syslog Event Configuration log level [Can be LOG_DEBUG, LOG_INFO, LOG_NOTICE, LOG_ERR, LOG_CRIT, LOG_ALERT, LOG_EMERG] | string | `"LOG_ERR"` | no |
-| tags | Tags to assign on ressources | map | `<map>` | no |
-| vm\_extension\_custom\_name | Extension name, auto-generated if empty. | string | `""` | no |
-| vm\_ids | List of Azure Linux VM ID to enable Diagnostics | string | n/a | yes |
-| vm\_count | Number of Azure Linux VM ID to enable Diagnostics | number | n/a | yes |
+| tags | Tags to assign on ressources | map(string) | `{}` | no |
+| vm\_extension\_name\_suffix | Extension suffix name. | string | `"linux-diagnostics"` | no |
+| vm\_ids | List of Azure Linux VM ID to enable Diagnostics | list(string) | n/a | yes |
 
 ## Related documentation
 
