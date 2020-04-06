@@ -33,6 +33,12 @@ variable "vm_ids" {
   type        = list(string)
 }
 
+variable "vm_count" {
+  description = "Count of VM IDs. Parameter needed until Terraform fixes count/for_each bug on sub-modules."
+  type        = number
+  default     = 1
+}
+
 // ========= Storage logs variables
 variable "diagnostics_storage_account_name" {
   description = "Azure Storage Account to use for logs and diagnostics"

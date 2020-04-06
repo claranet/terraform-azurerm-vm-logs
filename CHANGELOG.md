@@ -1,3 +1,9 @@
+# v2.2.0 - unreleased
+
+Breaking
+
+  * AZ-147: REVERT - From `count` to `for_each` with input variable changes
+
 # v2.1.0 - 2020-02-07
 
 Breaking

@@ -4,16 +4,13 @@
 This feature enables Diagnostics VM extension for Linux VM.
 It allows you to push logs on an Azure Storage Account and to enable Logs Analytics dashboards.
 
-## Requirements
+## Version compatibility
 
-* [AzureRM Terraform provider](https://www.terraform.io/docs/providers/azurerm/) >= 1.32
-
-## Terraform version compatibility
-
-| Module version | Terraform version |
-|----------------|-------------------|
-| >= 2.x.x       | 0.12.x            |
-| < 2.x.x        | 0.11.x            |
+| Module version    | Terraform version | AzureRM version |
+|-------------------|-------------------|-----------------|
+| >= 3.x.x          | 0.12.x            | >= 2.0          |
+| >= 2.x.x, < 3.x.x | 0.12.x            | <  2.0          |
+| <  2.x.x          | 0.11.x            | <  2.0          |
 
 ## Usage
 
@@ -76,18 +73,19 @@ module "vm-001-logs" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| client\_name | Client name/account used in naming | string | n/a | yes |
-| diagnostics\_linux\_extension\_version | Linux VM diagnostics extension version | string | `"3.0"` | no |
-| diagnostics\_storage\_account\_name | Azure Storage Account to use for logs and diagnostics | string | n/a | yes |
-| diagnostics\_storage\_account\_sas\_token | Azure Storage Account SAS Token. An Account SAS token for Blob and Table services (ss='bt'), applicable to containers and objects (srt='co'), which grants add, create, list, update, and write permissions (sp='acluw'). Do not include the leading question-mark (?). | string | n/a | yes |
-| environment | Project environment | string | n/a | yes |
-| location | Specifies the supported Azure location where the resource exists. | string | n/a | yes |
-| stack | Project stack name | string | n/a | yes |
-| syslog\_log\_level\_config | Syslog Event Configuration log level [Can be LOG_DEBUG, LOG_INFO, LOG_NOTICE, LOG_ERR, LOG_CRIT, LOG_ALERT, LOG_EMERG] | string | `"LOG_ERR"` | no |
-| tags | Tags to assign on ressources | map(string) | `{}` | no |
-| vm\_extension\_name\_suffix | Extension suffix name. | string | `"linux-diagnostics"` | no |
-| vm\_ids | List of Azure Linux VM ID to enable Diagnostics | list(string) | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| client\_name | Client name/account used in naming | `any` | n/a | yes |
+| diagnostics\_linux\_extension\_version | Linux VM diagnostics extension version | `string` | `"3.0"` | no |
+| diagnostics\_storage\_account\_name | Azure Storage Account to use for logs and diagnostics | `any` | n/a | yes |
+| diagnostics\_storage\_account\_sas\_token | Azure Storage Account SAS Token. An Account SAS token for Blob and Table services (ss='bt'), applicable to containers and objects (srt='co'), which grants add, create, list, update, and write permissions (sp='acluw'). Do not include the leading question-mark (?). | `any` | n/a | yes |
+| environment | Project environment | `any` | n/a | yes |
+| location | Specifies the supported Azure location where the resource exists. | `any` | n/a | yes |
+| stack | Project stack name | `any` | n/a | yes |
+| syslog\_log\_level\_config | Syslog Event Configuration log level [Can be LOG\_DEBUG, LOG\_INFO, LOG\_NOTICE, LOG\_ERR, LOG\_CRIT, LOG\_ALERT, LOG\_EMERG] | `string` | `"LOG_ERR"` | no |       
+| tags | Tags to assign on ressources | `map(string)` | `{}` | no |
+| vm\_count | Count of VM IDs. Parameter needed until Terraform fixes count/for\_each bug on sub-modules. | `number` | `1` | no |
+| vm\_extension\_name\_suffix | Extension suffix name. | `string` | `"linux-diagnostics"` | no |
+| vm\_ids | List of Azure Linux VM ID to enable Diagnostics | `list(string)` | n/a | yes |
 
 ## Related documentation
 
