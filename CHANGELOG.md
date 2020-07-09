@@ -1,5 +1,13 @@
 # v2.2.0 - unreleased
 
+Fixed
+
+  * AZ-206: Pin version of provider AzureRM to be usable under v2.x
+
+Added
+
+  * AZ-215: Manage installation of gpg package on VMs
+
 Breaking
 
   * AZ-147: REVERT - From `count` to `for_each` with input variable changes

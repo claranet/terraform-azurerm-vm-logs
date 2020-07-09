@@ -11,6 +11,10 @@ variable "stack" {
   description = "Project stack name"
 }
 
+variable "resource_group_name" {
+  description = "The name of the resource group in which the VM has been created."
+}
+
 variable "location" {
   description = "Specifies the supported Azure location where the resource exists."
 }
@@ -57,4 +61,3 @@ variable "syslog_log_level_config" {
   description = "Syslog Event Configuration log level [Can be LOG_DEBUG, LOG_INFO, LOG_NOTICE, LOG_ERR, LOG_CRIT, LOG_ALERT, LOG_EMERG]"
   default     = "LOG_ERR"
 }
-

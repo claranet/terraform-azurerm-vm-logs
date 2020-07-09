@@ -80,8 +80,9 @@ module "vm-001-logs" {
 | diagnostics\_storage\_account\_sas\_token | Azure Storage Account SAS Token. An Account SAS token for Blob and Table services (ss='bt'), applicable to containers and objects (srt='co'), which grants add, create, list, update, and write permissions (sp='acluw'). Do not include the leading question-mark (?). | `any` | n/a | yes |
 | environment | Project environment | `any` | n/a | yes |
 | location | Specifies the supported Azure location where the resource exists. | `any` | n/a | yes |
+| resource\_group\_name | The name of the resource group in which the VM has been created. | `any` | n/a | yes |
 | stack | Project stack name | `any` | n/a | yes |
-| syslog\_log\_level\_config | Syslog Event Configuration log level [Can be LOG\_DEBUG, LOG\_INFO, LOG\_NOTICE, LOG\_ERR, LOG\_CRIT, LOG\_ALERT, LOG\_EMERG] | `string` | `"LOG_ERR"` | no |       
+| syslog\_log\_level\_config | Syslog Event Configuration log level [Can be LOG\_DEBUG, LOG\_INFO, LOG\_NOTICE, LOG\_ERR, LOG\_CRIT, LOG\_ALERT, LOG\_EMERG] | `string` | `"LOG_ERR"` | no |
 | tags | Tags to assign on ressources | `map(string)` | `{}` | no |
 | vm\_count | Count of VM IDs. Parameter needed until Terraform fixes count/for\_each bug on sub-modules. | `number` | `1` | no |
 | vm\_extension\_name\_suffix | Extension suffix name. | `string` | `"linux-diagnostics"` | no |

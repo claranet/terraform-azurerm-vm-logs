@@ -34,4 +34,21 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
 SETTINGS
 
   tags = merge(local.default_tags, var.tags)
+
+  depends_on = [azurerm_virtual_machine_extension.requirements]
+}
+
+resource "azurerm_virtual_machine_extension" "requirements" {
+  count = var.vm_count
+
+  name                       = "${element(split("/", element(var.vm_ids, count.index)), 8)}-run-command"
+  location                   = var.location
+  resource_group_name        = var.resource_group_name
+  virtual_machine_name       = element(split("/", element(var.vm_ids, count.index)), 8)
+  publisher                  = "Microsoft.CPlat.Core"
+  type                       = "RunCommandLinux"
+  type_handler_version       = "1.0"
+  auto_upgrade_minor_version = true
+  protected_settings         = jsonencode(local.settings_linux)
+  tags                       = merge(local.default_tags, var.tags)
 }
