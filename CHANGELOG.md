@@ -1,4 +1,4 @@
-# v2.2.0 - unreleased
+# v2.2.0 - 2020-07-09
 
 Fixed
 
