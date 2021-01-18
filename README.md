@@ -47,20 +47,16 @@ module "vm-logs" {
   source  = "claranet/vm-logs/azurerm"
   version = "x.x.x"
 
-  for_each = toset([for vm in module.linux-vms : vm.vm_id])
-
   location       = module.azure-region.location
   location_short = module.azure-region.location_short
   client_name    = var.client_name
   environment    = var.environment
   stack          = var.stack
 
-  resource_group_name = module.rg.resource_group_name
+  vm_id = module.linux-vm.vm_id
 
   diagnostics_storage_account_name      = module.run-common.logs_storage_account_name
   diagnostics_storage_account_sas_token = module.run-common.logs_storage_account_sas_token["sastoken"]
-
-  vm_id = each.value
 
   tags = {
     environment = var.environment

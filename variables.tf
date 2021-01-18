@@ -14,11 +14,6 @@ variable "stack" {
   type        = string
 }
 
-variable "resource_group_name" {
-  description = "The name of the resource group in which the VM has been created."
-  type        = string
-}
-
 variable "location" {
   description = "Specifies the supported Azure location where the resource exists."
   type        = string
@@ -69,7 +64,6 @@ variable "diagnostics_linux_extension_version" {
   description = "Linux VM diagnostics extension version"
   default     = "3.0"
   type        = string
-
 }
 
 variable "syslog_log_level_config" {

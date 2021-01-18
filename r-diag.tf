@@ -14,9 +14,8 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
     local.diag_name,
   )
 
-  location             = var.location
-  resource_group_name  = var.resource_group_name
-  virtual_machine_id   = var.vm_id
+  virtual_machine_id = var.vm_id
+
   publisher            = "Microsoft.Azure.Diagnostics"
   type                 = "LinuxDiagnostic"
   type_handler_version = var.diagnostics_linux_extension_version
@@ -39,10 +38,8 @@ SETTINGS
 }
 
 resource "azurerm_virtual_machine_extension" "requirements" {
-  count = var.vm_count
-
-  name                       = "${element(split("/", element(var.vm_ids, count.index)), 8)}-run-command"
-  virtual_machine_id         = element(var.vm_ids, count.index)
+  name                       = "${element(split("/", var.vm_id), 8)}-run-command"
+  virtual_machine_id         = var.vm_id
   publisher                  = "Microsoft.CPlat.Core"
   type                       = "RunCommandLinux"
   type_handler_version       = "1.0"
@@ -50,4 +47,3 @@ resource "azurerm_virtual_machine_extension" "requirements" {
   protected_settings         = jsonencode(local.settings_linux)
   tags                       = merge(local.default_tags, var.tags)
 }
-
