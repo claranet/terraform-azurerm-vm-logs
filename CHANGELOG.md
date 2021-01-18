@@ -1,3 +1,8 @@
+# Unreleased
+
+Updated
+  * AZ-273: Module now compatible terraform `v0.13+`
+
 # v3.0.0 - 2020-07-22
 
 Breaking
