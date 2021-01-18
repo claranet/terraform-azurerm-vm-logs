@@ -19,6 +19,10 @@ variable "location" {
   description = "Specifies the supported Azure location where the resource exists."
 }
 
+variable "location_short" {
+  description = "Short version of the Azure location, used by naming convention."
+}
+
 variable "tags" {
   description = "Tags to assign on ressources"
   type        = map(string)
@@ -32,15 +36,8 @@ variable "vm_extension_name_suffix" {
 
 // ========= VM variables
 
-variable "vm_ids" {
-  description = "List of Azure Linux VM ID to enable Diagnostics"
-  type        = list(string)
-}
-
-variable "vm_count" {
-  description = "Count of VM IDs. Parameter needed until Terraform fixes count/for_each bug on sub-modules."
-  type        = number
-  default     = 1
+variable "vm_id" {
+  description = "Azure Linux VM ID to enable Diagnostics"
 }
 
 // ========= Storage logs variables

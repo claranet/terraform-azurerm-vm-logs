@@ -54,15 +54,17 @@ module "vm-001-logs" {
   version = "x.x.x"
 
   location       = module.azure-region.location
+  location_short = module.azure-region.location_short
   client_name    = var.client_name
   environment    = var.environment
   stack          = var.stack
 
+  resource_group_name = module.rg.resource_group_name
 
   diagnostics_storage_account_name      = module.run-common.logs_storage_account_name
   diagnostics_storage_account_sas_token = module.run-common.logs_storage_account_sas_token["sastoken"]
 
-  vm_ids   = [module.vm-001.vm_id]
+  vm_id = module.vm-001.vm_id
 
   tags = {
     environment = var.environment
