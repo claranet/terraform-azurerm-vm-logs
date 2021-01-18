@@ -8,18 +8,12 @@ data "template_file" "diag_json_config" {
   }
 }
 
-locals {
-  default_tags = {
-    env   = var.environment
-    stack = var.stack
-  }
-}
-
 resource "azurerm_virtual_machine_extension" "diagnostics" {
   name = coalesce(
     var.vm_extension_custom_name,
-    "${var.vm_name}-linux-diagnostics",
+    local.diag_name,
   )
+
   location             = var.location
   resource_group_name  = var.resource_group_name
   virtual_machine_id   = var.vm_id
