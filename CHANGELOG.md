@@ -1,4 +1,4 @@
-# Unreleased
+# v4.0.0 - 2021-01-21
 
 Breaking
   * AZ-344: Back to a single resource, because we can now use `for_each` on a module since Terraform `v0.13+`
