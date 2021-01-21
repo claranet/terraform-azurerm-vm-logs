@@ -1,7 +1,13 @@
 # Unreleased
 
+Breaking
+  * AZ-344: Back to a single resource, because we can now use `for_each` on a module since Terraform `v0.13+`
+
 Updated
   * AZ-273: Module now compatible terraform `v0.13+`
+
+Changed
+  * AZ-398: Force lowercase on default generated name
 
 # v3.0.0 - 2020-07-22
 

@@ -1,8 +1,10 @@
 location="fr-central"
+location_short="frc"
 client_name="test"
 environment="test"
 stack="ci"
 
-vm_ids=["/subscriptions/XXXX/resourceGroups/XXXX/providers/Microsoft.Compute/virtualMachines/vm-test-euwest"]
+vm_id="/subscriptions/XXXX/resourceGroups/XXXX/providers/Microsoft.Compute/virtualMachines/vm-test-euwest"
+
 diagnostics_storage_account_name="strtest"
 diagnostics_storage_account_sas_token="1234"

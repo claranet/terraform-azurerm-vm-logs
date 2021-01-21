@@ -1,28 +1,28 @@
 data "template_file" "diag_json_config" {
-  count = var.vm_count
-
   template = file("${path.module}/diag_config_3.0.json")
 
   vars = {
-    vm_id            = element(var.vm_ids, count.index)
+    vm_id            = var.vm_id
     storage_account  = var.diagnostics_storage_account_name
     log_level_config = var.syslog_log_level_config
   }
 }
 
 resource "azurerm_virtual_machine_extension" "diagnostics" {
-  count = var.vm_count
+  name = coalesce(
+    var.vm_extension_custom_name,
+    local.diag_name,
+  )
 
-  name = format("%s-%s", element(split("/", element(var.vm_ids, count.index)), 8), var.vm_extension_name_suffix)
+  virtual_machine_id = var.vm_id
 
-  virtual_machine_id   = element(var.vm_ids, count.index)
   publisher            = "Microsoft.Azure.Diagnostics"
   type                 = "LinuxDiagnostic"
   type_handler_version = var.diagnostics_linux_extension_version
 
   auto_upgrade_minor_version = true
 
-  settings = data.template_file.diag_json_config[count.index].rendered
+  settings = data.template_file.diag_json_config.rendered
 
   protected_settings = <<SETTINGS
     {
@@ -31,16 +31,15 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
     }
 SETTINGS
 
+
   tags = merge(local.default_tags, var.tags)
 
   depends_on = [azurerm_virtual_machine_extension.requirements]
 }
 
 resource "azurerm_virtual_machine_extension" "requirements" {
-  count = var.vm_count
-
-  name                       = "${element(split("/", element(var.vm_ids, count.index)), 8)}-run-command"
-  virtual_machine_id         = element(var.vm_ids, count.index)
+  name                       = "${element(split("/", var.vm_id), 8)}-run-command"
+  virtual_machine_id         = var.vm_id
   publisher                  = "Microsoft.CPlat.Core"
   type                       = "RunCommandLinux"
   type_handler_version       = "1.0"

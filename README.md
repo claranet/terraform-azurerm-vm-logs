@@ -43,26 +43,20 @@ module "run-common" {
   [..]
 }
 
-module "vm-001" {
-  source = "..."
-
-  [..]
-}
-
-module "vm-001-logs" {
+module "vm-logs" {
   source  = "claranet/vm-logs/azurerm"
   version = "x.x.x"
 
   location       = module.azure-region.location
+  location_short = module.azure-region.location_short
   client_name    = var.client_name
   environment    = var.environment
   stack          = var.stack
 
+  vm_id = module.linux-vm.vm_id
 
   diagnostics_storage_account_name      = module.run-common.logs_storage_account_name
   diagnostics_storage_account_sas_token = module.run-common.logs_storage_account_sas_token["sastoken"]
-
-  vm_ids   = [module.vm-001.vm_id]
 
   tags = {
     environment = var.environment
@@ -75,19 +69,20 @@ module "vm-001-logs" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| client\_name | Client name/account used in naming | `any` | n/a | yes |
+| client\_name | Client name/account used in naming | `string` | n/a | yes |
 | diagnostics\_linux\_extension\_version | Linux VM diagnostics extension version | `string` | `"3.0"` | no |
-| diagnostics\_storage\_account\_name | Azure Storage Account to use for logs and diagnostics | `any` | n/a | yes |
-| diagnostics\_storage\_account\_sas\_token | Azure Storage Account SAS Token. An Account SAS token for Blob and Table services (ss='bt'), applicable to containers and objects (srt='co'), which grants add, create, list, update, and write permissions (sp='acluw'). Do not include the leading question-mark (?). | `any` | n/a | yes |
-| environment | Project environment | `any` | n/a | yes |
-| location | Specifies the supported Azure location where the resource exists. | `any` | n/a | yes |
-| resource\_group\_name | The name of the resource group in which the VM has been created. | `any` | n/a | yes |
-| stack | Project stack name | `any` | n/a | yes |
+| diagnostics\_storage\_account\_name | Azure Storage Account to use for logs and diagnostics | `string` | n/a | yes |
+| diagnostics\_storage\_account\_sas\_token | Azure Storage Account SAS Token. An Account SAS token for Blob and Table services (ss='bt'), applicable to containers and objects (srt='co'), which grants add, create, list, update, and write permissions (sp='acluw'). Do not include the leading question-mark (?). | `string` | n/a | yes |
+| environment | Project environment | `string` | n/a | yes |
+| location | Specifies the supported Azure location where the resource exists. | `string` | n/a | yes |
+| location\_short | Short version of the Azure location, used by naming convention. | `string` | n/a | yes |
+| resource\_group\_name | The name of the resource group in which the VM has been created. | `string` | n/a | yes |
+| stack | Project stack name | `string` | n/a | yes |
 | syslog\_log\_level\_config | Syslog Event Configuration log level [Can be LOG\_DEBUG, LOG\_INFO, LOG\_NOTICE, LOG\_ERR, LOG\_CRIT, LOG\_ALERT, LOG\_EMERG] | `string` | `"LOG_ERR"` | no |
 | tags | Tags to assign on ressources | `map(string)` | `{}` | no |
-| vm\_count | Count of VM IDs. Parameter needed until Terraform fixes count/for\_each bug on sub-modules. | `number` | `1` | no |
+| vm\_extension\_custom\_name | Custom VM extension name. | `string` | `null` | no |
 | vm\_extension\_name\_suffix | Extension suffix name. | `string` | `"linux-diagnostics"` | no |
-| vm\_ids | List of Azure Linux VM ID to enable Diagnostics | `list(string)` | n/a | yes |
+| vm\_id | Azure Linux VM ID to enable Diagnostics | `string` | n/a | yes |
 
 ## Related documentation
 
