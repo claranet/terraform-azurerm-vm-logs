@@ -1,8 +1,4 @@
-// ========= Global variables
-variable "client_name" {
-  description = "Client name/account used in naming"
-  type        = string
-}
+# ========= Global variables
 
 variable "environment" {
   description = "Project environment"
@@ -11,16 +7,6 @@ variable "environment" {
 
 variable "stack" {
   description = "Project stack name"
-  type        = string
-}
-
-variable "location" {
-  description = "Specifies the supported Azure location where the resource exists."
-  type        = string
-}
-
-variable "location_short" {
-  description = "Short version of the Azure location, used by naming convention."
   type        = string
 }
 
@@ -42,14 +28,14 @@ variable "vm_extension_custom_name" {
   default     = null
 }
 
-// ========= VM variables
+# ========= VM variables
 
 variable "vm_id" {
   description = "Azure Linux VM ID to enable Diagnostics"
   type        = string
 }
 
-// ========= Storage logs variables
+# ========= Storage logs variables
 variable "diagnostics_storage_account_name" {
   description = "Azure Storage Account to use for logs and diagnostics"
   type        = string
