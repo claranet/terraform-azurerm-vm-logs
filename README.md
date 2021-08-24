@@ -90,13 +90,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| client\_name | Client name/account used in naming | `string` | n/a | yes |
 | diagnostics\_linux\_extension\_version | Linux VM diagnostics extension version | `string` | `"3.0"` | no |
 | diagnostics\_storage\_account\_name | Azure Storage Account to use for logs and diagnostics | `string` | n/a | yes |
 | diagnostics\_storage\_account\_sas\_token | Azure Storage Account SAS Token. An Account SAS token for Blob and Table services (ss='bt'), applicable to containers and objects (srt='co'), which grants add, create, list, update, and write permissions (sp='acluw'). Do not include the leading question-mark (?). | `string` | n/a | yes |
-| environment | Project environment | `string` | n/a | yes |
-| location | Specifies the supported Azure location where the resource exists. | `string` | n/a | yes |
-| location\_short | Short version of the Azure location, used by naming convention. | `string` | n/a | yes |
 | stack | Project stack name | `string` | n/a | yes |
 | syslog\_log\_level\_config | Syslog Event Configuration log level [Can be LOG\_DEBUG, LOG\_INFO, LOG\_NOTICE, LOG\_ERR, LOG\_CRIT, LOG\_ALERT, LOG\_EMERG] | `string` | `"LOG_ERR"` | no |
 | tags | Tags to assign on ressources | `map(string)` | `{}` | no |
