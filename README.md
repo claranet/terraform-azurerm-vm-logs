@@ -7,7 +7,8 @@ It allows you to push logs on an Azure Storage Account and to enable Logs Analyt
 ## Version compatibility
 
 | Module version | Terraform version | AzureRM version |
-|----------------|-------------------| --------------- |
+| -------------- | ----------------- | --------------- |
+| >= 5.x.x       | 0.15.x & 1.0.x    | >= 2.0          |
 | >= 4.x.x       | 0.13.x            | >= 2.0          |
 | >= 3.x.x       | 0.12.x            | >= 2.0          |
 | >= 2.x.x       | 0.12.x            | < 2.0           |
@@ -65,18 +66,34 @@ module "vm-logs" {
 }
 ```
 
+<!-- BEGIN_TF_DOCS -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| azurerm | >= 2.0 |
+| template | >= 2.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_virtual_machine_extension.diagnostics](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) | resource |
+| [azurerm_virtual_machine_extension.requirements](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_extension) | resource |
+| [template_file.diag_json_config](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) | data source |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| client\_name | Client name/account used in naming | `string` | n/a | yes |
 | diagnostics\_linux\_extension\_version | Linux VM diagnostics extension version | `string` | `"3.0"` | no |
 | diagnostics\_storage\_account\_name | Azure Storage Account to use for logs and diagnostics | `string` | n/a | yes |
 | diagnostics\_storage\_account\_sas\_token | Azure Storage Account SAS Token. An Account SAS token for Blob and Table services (ss='bt'), applicable to containers and objects (srt='co'), which grants add, create, list, update, and write permissions (sp='acluw'). Do not include the leading question-mark (?). | `string` | n/a | yes |
 | environment | Project environment | `string` | n/a | yes |
-| location | Specifies the supported Azure location where the resource exists. | `string` | n/a | yes |
-| location\_short | Short version of the Azure location, used by naming convention. | `string` | n/a | yes |
-| resource\_group\_name | The name of the resource group in which the VM has been created. | `string` | n/a | yes |
 | stack | Project stack name | `string` | n/a | yes |
 | syslog\_log\_level\_config | Syslog Event Configuration log level [Can be LOG\_DEBUG, LOG\_INFO, LOG\_NOTICE, LOG\_ERR, LOG\_CRIT, LOG\_ALERT, LOG\_EMERG] | `string` | `"LOG_ERR"` | no |
 | tags | Tags to assign on ressources | `map(string)` | `{}` | no |
@@ -84,6 +101,10 @@ module "vm-logs" {
 | vm\_extension\_name\_suffix | Extension suffix name. | `string` | `"linux-diagnostics"` | no |
 | vm\_id | Azure Linux VM ID to enable Diagnostics | `string` | n/a | yes |
 
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
 ## Related documentation
 
 Microsoft Azure documentation: [Use Linux Diagnostic Extension to monitor metrics and logs](https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/diagnostics-linux).
