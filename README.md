@@ -5,7 +5,7 @@ This feature enables Diagnostics VM extension for Linux VM.
 It allows you to push logs on an Azure Storage Account and to enable Logs Analytics dashboards.
 
 <!-- BEGIN_TF_DOCS -->
-## Global versionning rule for Claranet Azure modules
+## Global versioning rule for Claranet Azure modules
 
 | Module version | Terraform version | AzureRM version |
 | -------------- | ----------------- | --------------- |
