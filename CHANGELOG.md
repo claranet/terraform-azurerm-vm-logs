@@ -1,3 +1,8 @@
+# Unreleased
+
+Added
+  * AZ-615: Add an option to enable or disable default tags
+
 # v4.0.1 - 2021-08-27
 
 Updated

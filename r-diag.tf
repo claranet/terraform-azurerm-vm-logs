@@ -31,7 +31,6 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
     }
 SETTINGS
 
-
   tags = merge(local.default_tags, var.tags)
 
   depends_on = [azurerm_virtual_machine_extension.requirements]

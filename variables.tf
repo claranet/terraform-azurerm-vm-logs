@@ -10,12 +10,6 @@ variable "stack" {
   type        = string
 }
 
-variable "tags" {
-  description = "Tags to assign on ressources"
-  type        = map(string)
-  default     = {}
-}
-
 variable "vm_extension_name_suffix" {
   description = "Extension suffix name."
   type        = string
