@@ -1,13 +1,3 @@
-data "template_file" "diag_json_config" {
-  template = file("${path.module}/diag_config_3.0.json")
-
-  vars = {
-    vm_id            = var.vm_id
-    storage_account  = var.diagnostics_storage_account_name
-    log_level_config = var.syslog_log_level_config
-  }
-}
-
 resource "azurerm_virtual_machine_extension" "diagnostics" {
   name = coalesce(
     var.vm_extension_custom_name,
@@ -22,7 +12,11 @@ resource "azurerm_virtual_machine_extension" "diagnostics" {
 
   auto_upgrade_minor_version = true
 
-  settings = data.template_file.diag_json_config.rendered
+  settings = templatefile("${path.module}/diag_config_3.0.json", {
+    vm_id            = var.vm_id
+    storage_account  = var.diagnostics_storage_account_name
+    log_level_config = var.syslog_log_level_config
+  })
 
   protected_settings = <<SETTINGS
     {

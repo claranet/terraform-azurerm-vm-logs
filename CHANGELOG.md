@@ -1,3 +1,8 @@
+# Unreleased
+
+Changed
+  * Use the `templatefile` func instead of the deprecated template provider
+
 # v4.1.0 - 2022-02-15
 
 Added
