@@ -1,7 +1,7 @@
-# Unreleased
+# v4.2.0 - 2022-07-12
 
 Changed
-  * Use the `templatefile` func instead of the deprecated template provider
+  * [GITHUB-2](https://github.com/claranet/terraform-azurerm-vm-logs/pull/2): Use the `templatefile` func instead of the deprecated template provider
 
 # v4.1.0 - 2022-02-15
 
